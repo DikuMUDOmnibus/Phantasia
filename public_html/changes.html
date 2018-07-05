@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+	<TITLE>Phantasia Changes</TITLE>
+	<META NAME="generator" CONTENT="BBEdit 5.0">
+</HEAD>
+<BODY BACKGROUND="graphics/mis6b.jpg" TEXT="#BBBB66" LINK="#996699" ALINK="#BB3333" VLINK="#BB3333">
+
+<!--#exec cmd="/home/httpd/ssibin/Counter4.exe cfg=PHANTASIA"-->
+
+<TABLE WIDTH="100%" CELLPADDING="0">
+	<TR>
+		<TD WIDTH=90></TD>
+		<TD>
+
+<CENTER>                                                                     
+<!--#exec cmd="/home/httpd/ssibin/adPicker4.exe \"cfg=PHANTASIA;pos=TOP\""-->
+</CENTER>                                                                    
+			<CENTER>
+			<IMG SRC="graphics/changes.jpeg" ALT="Phantasia 4 Title" WIDTH="218" HEIGHT="26">
+			</CENTER>
+
+<H4>4.032 - 5/1/02</H4><P>
+--------------------------------
+
+<UL>
+<LI> Swapped elf and mage strength.
+<LI> Replaced profanities with smurfs.
+</UL>
+
+<H4>4.031 - 4/1/02</H4><P>
+--------------------------------
+
+<UL>
+<LI> Lowered starting strengths for all characters except elves, strength gain rates, and sword effectiveness.  Melee characters were getting too powerful.
+<LI> Fixed bug with throw smurf.
+<LI> Strengthened Morgoth slightly and reduced his treasure.
+<LI> Fixed bug with quitting in cracks of doom.
+<LI> Increased blessing cost to fix loophole
+</UL>
+
+<H4>4.03 - 3/18/02</H4><P>
+--------------------------------
+
+<UL>
+<LI> Tweaked character stats.  Dwarves and Halflings were too hard and Elves 
+too easy with the new speed equations for blessings, so speed and strength were
+revamped.  Elves and mages swapped strength, fighters and dwarves swapped 
+strength.  Halflings +3 speed, dwarves +1, mages -1.
+<LI> Magic resistance taken from dwarves and given to halflings.  Dwarves still
+keep improved resting rate.
+<LI> Weakened energy void to be less effective than degenerate. 
+<LI> Rings may, with a low probability, randomly force the user to use them.
+<LI> Removed rounding errors with quicksilver.
+<LI> Removed the old scoreboard as it accidentally got overwritten.
+<LI> Fixed a couple of bugs with null names.
+<LI> Merchants now boot people who leave on a post.
+<LI> Councils and higher are now immune to throw smurf.
+<LI> Dwarf and fighter strength swapped back to old values.
+</UL>
+
+
+<H4>4.022 - 1/21/02</H4><P>
+--------------------------------
+<UL>
+<LI> Fixed players running into events after they die / use quit button
+by adding more checks.
+<LI> Fixed a bug that did not allow players to move to the throne.
+<LI> Fixed a bug that allowed council members to cure poison.
+<LI> Fixed a bug with calling monster 0 from a pick scroll.
+<LI> Hunting is now disallowed on posts so that people cannot easily 
+pick up gold safely and enter a post.
+<LI> Druids now give playing tips as well as experience.  
+<LI> Corpses are now removed from the realm at a rate based on level.
+<LI> Books doubled in price to emphasize the difference between the classes.
+<LI> Amulets now sold at 900.  Amulets lowered in price initially but 
+are now level-dependent like blessings.
+<LI> Swords increased back to 500 gold per plus, but made much more effective
+and based on character strength.  This will make the stronger classes more
+effective in the late game.  Swords sold at 1600 now, and the sword treasures
+have been reduced in strength to compensate (but they will tend to be 
+stronger than before).
+<LI> The help button no longer ages characters.
+<LI> All or nothing is more successful against characters with high levels or sin.
+<LI> Closing the applet will no longer allow the player to bypass events such as monsters summoned by shriekers.
+<LI> Morgoth's strength now based solely on energy and shield.  Force fields 
+have been now removed, but he's been significantly weakened.
+<LI> Gandalf now checks sin for each spell he can cast on you.
+<LI> Apprentices are now always able to evade inter-player combat.
+<LI> Due to the changes in swords, Morgoth can no longer be nicked.
+<LI> Becoming Dark Lord no longer puts you on the scoreboard.
+<LI> A player will die now when strength reaches 0.
+<LI> The server will now mute a player if a player sends too many super-long messages.
+<LI> The treasure trove is now encountered before a monster so that evading
+a monster on the trove square doesn't lose the treasure.
+<LI> Fixed a bug where Councils could heal blindness.
+<LI> Fixed a bug involving the crowning of a new valar.
+<LI> Made the ring toss easier to understand.
+<LI> Fixed a bug where the trove became an energy void.
+<LI> Fixed a bug with the accounting of extra-long messages.
+<LI> Treasure trove now appears a little further out on average.
+<LI> Fixed a bug with the king's dying locking up the game.
+<LI> In order to provide a testing ground for complaints about the monster speed
+code, when experimentos now encounter morons, a moron will always match a 
+player's speed.  This gives a straight 50% chance per round that the 
+player will get a move against a fairly harmless creature.  Please fight at 
+least 1000 rounds with a moron and collect data on the number 
+of hits a moron gets for each player action before coming to a wizard 
+about the fighting code being broken.
+<LI> Made the medics more reasonable about curing large amounts of poison.
+<LI> Morgoth is more likely to show up when an ex-valar is near the grail.
+</UL>
+
+<H4>4.021 - 12/31/01</H4><P>
+--------------------------------
+<UL>
+<LI> The scoreboard is reset and the old scoreboard is available from the Info menu.
+<LI> Saruman can bypass a player's charm stash to scramble charms and amulets.  However, he will not do so if the player has more amulets than charms.  In addition, sin has been put back into the stat scramble equation.
+<LI> A palantir is now required to enter channel 8, and players in channel 8 are forced to hear everything in channel 1 and immune to slapping.
+<LI> The Balrog now drains a percentage of a player's experience and transfers a small portion of it to his strength.  NOTE: A bug made him too powerful, fixed.
+<LI> Titans now always punch through a force field and damage your shield when they hit you.  
+<LI> The Jabberwock now burbles away half your quicksilver.
+<LI> The Dark Lord now needs significantly more charms to be overthrown and also may drop a palantir.  In addition, only large-size Dark Lords will drop The One Ring.
+<LI> The speed scroll is now slightly less effective for most players.
+<LI> If you have a blessing already, the treasure trove gives charms to the needy.
+<LI> Fixed a bug with the king not getting dethroned after hitting level 2000.
+<LI> A player may no longer luckout in purgatory.  This closes a loophole that allowed players to attempt multiple luckouts on the same monster.
+<LI> Tweaked the medic equations a little so that players couldn't go to a post and then spend very little to get cured.
+<LI> The tax rate on gold has increased slightly.
+<LI> Smeagols and trolls no longer destroy charms with their special attacks.
+<LI> Charms usage has been greatly increased for mages and fighters and greatly reduced for experimentos, halflings, and dwarves.  This should improve the survival rates of dwarves and halflings.
+<LI> Silmarils now become less effective when the maximum speed for that character type is reached.  
+<LI> It is now possible to acquire the One Ring while carrying another ring of power.
+<LI> Books are now half as effective as they used to be past a certain point.
+(NOTE: Fixed a bug with this.) 
+<LI> Players now need a sword (at least +1) to nick.
+<LI> King and valar information is now saved across server crashes, making 
+the positions much more permanent
+
+</UL>
+
+<A HREF="oldchanges.html">Previous changes</A>
+
+</HTML>

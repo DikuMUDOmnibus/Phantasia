@@ -1,0 +1,3 @@
+4 192.168.0.1 wizardAccount theWizard 0
+# Delete this line and everything below it
+# Format: level network account character ignoreNetworkFlag

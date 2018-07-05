@@ -1,0 +1,80 @@
+Contained in this directory is all the files for Phantasia 4.  Congratulations
+on downloading it.  I hope you have fun.
+
+Please note that this game comes with no gaurantee to function.  I previously
+had it working on a RedHat Linux 7.1 install.  Expect more effort to be needed
+to get it working on dissimilar systems.
+
+To get this code working, here's what I believe will need to be done:
+
+1) Requirements:
+
+A C compiler (I used gcc)
+An http server with a cgi directory enabled (I used Apache)
+Perl with an MD5 module
+Properly configured sendmail so users can receive confirmation codes.
+A open port so clients can connect.  43302 is currently used.
+Some disk space, depending on your logging wishes.
+
+
+2) Compile the server daemon.
+
+The source code will be found in phantasia/src.  You will first need to 
+modify all the directoy paths in pathnames.h to match you installation.  You
+may also want to modify what is logged by commenting/uncommenting the
+define statements in include.h.  When ready, if you're lucky, you can compile
+the server daemon with the command "make".
+
+
+3) Put up the web pages.
+
+All Phantasia web pages are in the public_html directory.  Most are static
+web pages, although there are a few cgi perl scripts in public_html/cgi-bin.
+Set up your server so these can be accessed via a remote web browser.  As a
+note, java applets are only permitted to initiate a connection back to the
+system they were loaded from, therefore, the server daemon must be running
+on the same system the applet is loaded from.
+
+Be careful of the cgi scripts.  They send read a number from conf/cookie to
+send to new players so they can be identified.  If the script can not access
+this file or does not have permissions to modify it, each player will be sent
+the same identification number causing them all to be banned if one is.
+
+
+4) Start the Phantasia server.
+
+You should just be able to run the compiled program from step 2.  Problems are
+either logged to stdout or the error log file.  Watch for problems in both
+locations.
+
+
+5) See if one of the clients can connect.
+
+Open the web pages from a remove machine and open the game.  If all goes well,
+there should be a connection.  If the client hangs or gives a message about
+a null connection, then more tweaking needs to be done on the configuration.
+I may have the time to answer a question or two, but do not ask me to
+troubleshoot your installation.
+
+
+6) Automate the server tasks.
+
+Phantasia 4 is not stable and will crash due to the number of threads the game
+spawns.  As a workaround, I have included scripts to restart the game.  The
+conf/rc.phant script will check to see if a game is running and restart it if
+it is not.  Make sure you set the internal paths of this script.  crontab.stuff
+will run rc.phant every 15 minutes as well as call a logrotate job at 2am every
+morning.
+
+
+7) Send me a note.
+
+I'd like to know about any/all phantasia versions running.  I would be happy
+to link my site to yours so my players can choose their favorite version of
+the game.  My email address is bkelly@dimensional.com.
+
+
+This set of instructions was thrown together.  If you have any suggestions
+let me know.
+
+Brian

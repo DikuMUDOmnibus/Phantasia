@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <TITLE>Phantasia Spells</TITLE>
+ <META NAME="generator" CONTENT="BBEdit 5.0">
+</HEAD>
+<BODY BACKGROUND="graphics/mis6b.jpg" TEXT="#BBBB66" LINK="#996699" ALINK="#BB3333" VLINK="#BB3333">
+
+<TABLE WIDTH="100%" CELLPADDING="0">
+ <TR>
+  <TD WIDTH=90></TD>
+  <TD>
+
+<CENTER>
+<!--#exec cmd="/home/httpd/ssibin/adPicker4.exe \"cfg=PHANTASIA;pos=TOP\""-->
+</CENTER>
+
+<CENTER>
+<IMG SRC="graphics/spells.jpeg" ALT="Spells" WIDTH="70" HEIGHT="26">
+</CENTER>
+
+   <P>
+During the course of the game, the player may see a need to exercise
+his/her magic powers.  Spells are cast using <A HREF="equipment.html#mana">mana</A> and normally have
+a minimum <A HREF="stats.html#magic">magic level</A> and character <A HREF="stats.html#level">level</A>.  Here's a list of all known 
+spells:
+   </P>
+
+   <H4>All or Nothing</H4>
+   <H5>
+   magic level: none<BR>
+   character level: none<BR>
+   mana used: 1<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Has a chance of working based on monster experience and character magic level.
+When it works, it hits the monster just enough to kill it.  If it fails, the
+monster's <A HREF="stats.html#quickness">quickness</A> and
+<A HREF="stats.html#strength">strength</A> double.
+<A HREF="spells.html#paralyze">Paralyzed</A> monsters wake up much quicker as
+a result of this spell.
+   </P>
+
+   <H4>Magic Bolt</H4>
+   <H5>
+   magic level: 5<BR>
+   character level: none<BR>
+   mana used: variable<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Hits the monster based upon the amount of <A HREF="equipment.html#mana">mana</A> expended and <A HREF="stats.html#stats">magic level</A>.
+   </P>
+
+   <H4>Increase Might</H4>
+   <H5>
+   magic level: 15<BR>
+   character level: none<BR>
+   mana used: 30 + 1/2 * magic level<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Used during combat with monsters.  Increases <A HREF="stats.html#strength">strength</A> for that battle only.
+   </P>
+
+   <A NAME="cloak"><H4>Cloak</H4></A>
+   <H5>
+   magic level: 20<BR>
+   character level: 7<BR>
+   mana used: 35<BR>
+   when used: normal play<BR>
+   </H5>
+   <P>
+Cloak prevents monsters from finding the character, as well as hiding
+the player's coordinates from others. Maintaining a cloak costs mana 
+equal to the size of the monsters you're hidden from.
+While cloaked, players cannot collect <A HREF="equipment.html#mana">mana</A>, 
+hunt monsters, find <A HREF="realm.html#post">trading posts</A> or objects in the realm, use special powers or teleport.
+   </P>
+
+   <H4>Haste</H4>
+   <H5>
+   magic level: 25<BR>
+   character level: none<BR>
+   mana used: 35 + 1/2 * magic level<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Makes it harder for the monster to attack by temporarily increasing the
+player's <A HREF="stats.html#quickness">quickness</A>.  
+   </P>
+
+   <A NAME="field"><H4>Force Field</H4></A>
+   <H5>
+   magic level: 35<BR>
+   character level: none<BR>
+   mana used: 60 + 1/2 * magic level<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Throws up a shield to protect from damage. The shield is added to actual
+<A HREF="stats.html#energy">energy level</A> and based on magic level.
+Normally, damage occurs first to the shield, and then to the players
+actual <A HREF="stats.html#energy">energy level</A>.
+   </P>
+
+   <A NAME="teleport"><H4>Teleport</H4></A>
+   <H5>
+   magic level: 40<BR>
+   character level: 15 <BR>
+   mana used: variable<BR>
+   when used: normal play<BR>
+   </H5>
+   <P>
+Allows the player to move with much more freedom than with the <A HREF="commands.html#compass">compass</A> or <A HREF="commands.html#move">move
+option</A>, at the price of expending <A HREF="equipment.html#mana">mana</A>.
+This spell is more efficient as <A HREF="stats.html#magic">magic level</A>
+increases.
+   </P>
+
+   <A NAME="transport"><H4>Transport</H4></A>
+   <H5>
+   magic level: 45<BR>
+   character level: none<BR>
+   mana used: 100<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Transports the monster away from the player.  Success is based upon player's
+<A HREF="stats.html#magic">magic level</A> and the monster's <A HREF="stats.html#experience">experience</A>.  
+If successful, there is a 50% chance the monster will drop any
+<A HREF="treasure.html">treasure</A> it was carrying.
+If it fails, the player may be transported instead.  
+   </P>
+
+   <A NAME="paralyze"><H4>Paralyze</H4></A>
+   <H5>
+   magic level: 60<BR>
+   character level: none<BR>
+   mana used: 125<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+"Freezes" the monster by putting its <A HREF="stats.html#quickness">quickness</A> slightly negative.  The
+monster will slowly wake up.  Success is based upon the 
+player's <A HREF="stats.html" NAME="magic">magic</A> and
+the monster's <A HREF="stats.html#experience">experience</A>. 
+If it fails, nothing happens.
+   </P>
+
+   <H4>Transform</H4>
+   <H5>
+   magic level: 75<BR>
+   character level: none<BR>
+   mana used: 150<BR>
+   when used: combat<BR>
+   </H5>
+   <P>
+Transforms the monster randomly into one of the 100 monsters from the
+<A HREF="monsters.html#list">monster file</A>.  This spell can fail and backfire in inter-terminal combat.
+   </P>
+
+   <CENTER>
+   <P>
+   <A HREF="itcombat.html"><IMG SRC="graphics/previous.jpeg" ALT="" WIDTH="109" HEIGHT="18"></A>
+   <A HREF="treasure.html"><IMG SRC="graphics/next.jpeg" ALT="" WIDTH="73" HEIGHT="18"></A>
+   </P>
+
+   <HR>
+
+   <P>
+   <A HREF="index.html">Home</A>
+ |
+   <A HREF="/cgi-bin/game.cgi">The Game</A>
+ |
+   <A HREF="intro.html">The Rules</A>
+ |
+   <A HREF="info.html">Game Info</A>
+   </P>
+   </CENTER>
+
+   </TD>
+   </TR>
+  </TABLE>
+ </BODY>
+</HTML>

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ps x > /tmp/ps.txt
+grep "phantasia/bin/phantasia" /tmp/ps.txt > /dev/null
+rc=$?
+now=`date`
+
+if [ $rc != "0" ]
+then
+	nohup "../phantasia/bin/phantasia" &
+	echo "$now - started phantasia server" >> ~/game.log
+else
+	count=`grep "phantasia/bin/phantasia" /tmp/ps.txt | wc -l`
+	let count="$count - 2"
+	echo "$now - $count game(s) running" >> ~/game.log
+#	vmstat 10 3 >> game.log
+#	echo >> game.log
+fi
+
+rm /tmp/ps.txt
+exit 0

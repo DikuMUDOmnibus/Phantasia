@@ -1,0 +1,1099 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+	<TITLE>Phantasia Changes</TITLE>
+	<META NAME="generator" CONTENT="BBEdit 5.0">
+</HEAD>
+<BODY BACKGROUND="graphics/mis6b.jpg" TEXT="#BBBB66" LINK="#996699" ALINK="#BB3333" VLINK="#BB3333">
+
+<!--#exec cmd="/home/httpd/ssibin/Counter4.exe cfg=PHANTASIA"-->
+
+<TABLE WIDTH="100%" CELLPADDING="0">
+	<TR>
+		<TD WIDTH=90></TD>
+		<TD>
+
+<CENTER>                                                                     
+<!--#exec cmd="/home/httpd/ssibin/adPicker4.exe \"cfg=PHANTASIA;pos=TOP\""-->
+</CENTER>                                                                    
+			<CENTER>
+			<IMG SRC="graphics/changes.jpeg" ALT="Phantasia 4 Title" WIDTH="218" HEIGHT="26">
+			</CENTER>
+
+<H4>4.000 -</H4>
+
+<UL>
+<LI>Phantasia has been changed from a shared-file system to a client-server syetem.  The server is a thread based socket program written in C and contains much of the old code.  Each game is given it's own thread, and keeps mainly to itself.  Occasionally, the thread will read or write to shared memory in order to exchange information with the other threads.
+
+<LI>The client is written in Java so people can play with Java-enabled browsers.  It includes a graphical status screen, a message window, a chat area, a list of current players and many buttons and dialog boxes for player interaction.
+
+<LI>The player's "action mailbox" has been replaced with an event system.  Events can be queued and passed to other threads for player interaction.  This allows players to encounter more than one thing in a move and helps to insure player tampers will occur.
+
+<LI>Turns are much more seperate due to the events.  Because of this every monster (even ones that flock) may drop a treasure.  Force shields do not maintain through flocking monsters.
+
+<LI>Instead of keeping a character file containing active games, the server now holds all active games in memory and only writes to the character file to load and save games.
+
+<LI>A player's corpse is created when a player dies in a manner that would leave one.  Future players will find the body and be asked of they wish to search it.  There is a chance the body will be cursed.
+</UL>
+
+
+<H4>4.001 -</H4>
+
+<UL>
+<LI>Fixes several bugs that could cause segmentation faults.  One consisted on getting information on a player who just left the game.  There were also problems when the king or valar saved out of the game.
+
+<LI>The client-server protocol was rewritten.  The server can now update one part of the player's status panel and the client can now cancel the current request.  In addition, chat messages are no longer limited to 80 characters.
+
+<LI>The socket interface was re-written to be more stable.  The server will now cleanly kill a game when something unexpected happens on the socket, regardless of where the error occurs.
+
+<LI>Logging has been improved.  The server now logs all connections, games and events.  The chat log has been given its own file.
+
+<LI>The special abilities for king, Council of the Wise and valar have been modified.  I now believe that they are still plenty nasty, but a little more balanced.  Only time will tell.
+
+<LI>Valhala no longer exists.  The valar is free to roam the realm, but will continue to attract monsters of a size equal to his/her level.
+
+<LI>All threads now use I/O signals to determine when there is work to do.  This has significantly increased the system's idle time and prepares the game for several hundred users.
+
+<LI>Cool new HTML pages have been written to support Phantasia 4.
+
+<LI>The 1.18 Java client was created to allow the more modern browsers to access the game.  The 1.02 Java client will be kept available for some users, but will not be improved.
+
+<LI>The wizard has been given options to shutdown the server.
+
+<LI>Timeouts have been added.  If a player does not respond within a maximum of 60 seconds, the option is passed or canceled.
+</UL>
+
+<H4>4.002 -</H4>
+
+<UL>
+<LI>Plugged several memory leaks.  Timed out events were not being freed.  The main client strcture was not being freed.
+
+<LI>Fixed several lines that screwed up the client-server protocol.
+
+<LI>Added announcements when players enter the game, defeat the Dark Lord and become council members.  Added it's own subroutine for chat.
+
+<LI>Fixed the corpse virgin decision.  It was wired backwards.
+
+<LI>Improved administration functions so shutdown commands ask for confirmation and all special abilities can be done by the wizard without restrictions.
+</UL>
+
+<H4>4.003 -</H4>
+
+<UL>
+<LI>Added character sexes so female characters become queen instead of king.
+
+<LI>Fixed several bugs.  One would crash the server when someone ran out of mana cloaked.  Another crashed the server when events were orphaned.
+
+<LI>Created a backup command that would save characters to disk that were currently playing.  Admin intervention is needed to restore these charcters.
+
+<LI>Created an automatic charcter backup routine.  It saves charcters to a common file which is checked when the server restarts.
+
+<LI>Fixed a display problem when shopkeepers are cheated too much.
+
+<LI>Modified the character structure.  Added character sex and time the character was saved/created.  I also created a utility to convert old charcters to the new form.
+
+<LI>Fixed calls to Do_age so they occur before actions, do not occur an extra time in battle and do not get called when an opponent strikes in inter-player combat.
+
+<LI>Modified all events to modify stats or send messages after the player hits "More" instead of before.
+
+<LI>Modified the "Please choose your next action" statement to come up only once.
+
+<LI>Mimics were lowered to a speed of 13 to make them much more wimpy.
+
+<LI>Moves to someplace nearby are now within a players step.
+
+<LI>Luckouts now move the player to prevent an easy out on Morons.
+
+<LI>Fixed a bug that prevented speeds of 0 when maxSpeed = 0.  This caused the speed bar graph to show a negative.
+
+<LI>Tried to make the character statistics a little more balanced.  Elves lost significant strength and mana.  Magic-Users gained a point of speed and magic.  Dwarf speed was brought up from the doldrums.  Halflings gained strength, quickness and magic.  Also, both Fighters and Halflings gain more strength for every level.
+</UL>
+
+<H4>4.004 -</H4>
+
+<UL>
+<LI>The server now attepmpts to find new connections DNS name and uses that for player information.</LI>
+
+<LI>Added a scoreboard protocol so players can view all entries.  Also created a function that drops characters below level 10 after 60 days</LI>
+
+<LI>Fixed rings so they actually heal the player during battle.</LI>
+
+<LI>Modified character stats so unknown passwords and ring durations say "*unknown*" instead of "XXXXXX" and blessings, virgin and palantirs say "Yes/No" instead of "1/0".</LI>
+
+<LI>Restored kings (can occur after server crash) check to see if anyone is currently king and sets the realm pointer.</LI>
+
+<LI>Compiled the server code with "-D_REENTRANT" and "-O".  Let's hope the first prevents some crashes.</LI>
+
+<LI>Added code to erase player information in the realm when they cancel or disconnect after putting in their name.</LI>
+
+<LI>Fixed a bug that erased battle spells when a players goes up a level by nicking.</LI>
+
+<LI>A player can now only find up to three crowns as treasure, instead of 4.</LI>
+
+<LI>The force shields created by scrolls were too weak.  The function has been fixed.</LI>
+
+<LI>Fixed inter-player combat so the attacking player releases the shared memory.  Before this, the defender would be stuck attempting to lock this memory causing the defender to miss events and possibly cause an infinite loop.</LI>
+
+<LI>Modified Do_send_event to place events in the bottom of the destination thread's queue.  Hopefully, this will eliminate crashes caused by many requests for player information</LI>
+</UL>
+
+<H4>4.005 -</H4>
+
+<UL>
+<LI>Made major changes to battle spells.  Force shield and transform are now harder to get and cost more mana while increase might, invisibility and transport are easier and cost less.</LI>
+
+<LI>Differences in maximum mana have been reduced.</LI>
+
+<LI>Halflings have been upgraded again.  They now have the main attributes of a fighter, but higher speed and lower magic.</LI>
+
+<LI>Fixed inter-terminal combat so self-modification spells (strength and invisibility) work properly.  I also increased the probability of transform and paralyze working.</LI>
+</UL>
+
+<H4>4.006 -</H4>
+
+<UL>
+<LI>Changed experience in inter-player combat.  The experience a player gets for killing another is experience / (level + 1).  When nicked a player gives 10% of that modified experience, but loses 10% of full experience.</LI>
+
+<LI>Wrote the code for council members to heal other players.</LI>
+
+<LI>Modified the council member banish command do it actually sends beyond the point of no return.  Before it just did a far teleport.</LI>
+
+<LI>Fixed an infinite loop in the placement of the grail.</LI>
+
+<LI>Modified the king's teleport so it can not move a player closer to 0,0.</LI>
+
+<LI>Fixed introduction screen to check for a player description before it publishes information no the present king/queen and valar.</LI>
+
+<LI>Fixed Morgoth code so only the Force Field spell works during his encounter and eliminated a reduntant line setting his strength.  Later, Morgoth was quickness was fixed, his stats were made a little stronger and the "Increase Might" and "Invisibility" spells were added to "Force Field".</LI>
+
+<LI>Created a new wizard shutdown option: leisure_shutdown which brings down the game the next time no players are logged on.</LI>
+
+<LI>Modified decree, intervene and command options so they can not be done while cloaked.</LI>
+
+<LI>Modified strength and quickness so they can never be negative.</LI>
+
+<LI>The code now calls a routine that checks for maximum brains.</LI>
+
+<LI>Queens are now listed with a Q instead of a K.</LI>
+
+<LI>Gems are no longer taxed in an attempt to prevent economy saturation.</LI>
+
+<LI>Melee, skirmish, magic bolt, transport and paralyze are now modified by brains.  Transport and paralyze are now more likely to fail when used against higher experience monsters.</LI>
+
+<LI>The Valar's relocate ability can no longer return someone from beyond.  The only way back is using a transporter.</LI>
+
+</UL>
+
+<H4>4.007 -</H4>
+
+<UL>
+
+<LI>Modified the scoreboard to only show characters between levels 50 and 3000 who didn't die beyond and characters who have become Valar. All characters are now placed at the top of their division, so the most revent valar will be the first entry.</LI>
+
+<LI>Removed the ability to put spaces from the end of character names</LI>
+
+<LI>Modified the ban file to include subnet support</LI>
+
+<LI>Created a liar file to append prefixes and suffixes to player's names.</LI>
+
+<LI>Returned the "ex-valar" special class to aide in the scoreboard.</LI>
+
+<LI>Gave the transform, transport and paralyze spells less chance of working against larger monsters, and the transform spell can now bounce.  Transform will fail the soonest, then transport and finally paralyze.</LI>
+
+<LI>Fixed the ring code.  Up until the point Dark Lord rings were never handed out.</LI>
+
+<LI>Council members are now immune to being nicked.</LI>
+
+<LI>Modified the "old age" code.  Characters are still retrired upon reaching level 10000, but ten levels are subtracted from that maximum age for every degeneration.</LI>
+
+<LI>Lowered Morgoth's quickness.  He was winning about 50% of his battles.  More against the Valar.</LI>
+
+<LI>Fixed the save out loophole.  New players to the realm now have a chance for encounters before results from the square.</LI>
+
+<LI>Lowered odds of gems and gold being cursed.</LI>
+
+<LI>Fixed a bug so that players unset their own inter-player combat strcture pointer when they abandon combat.</LI>
+
+<LI>Added a feature to turn off the chat abilities of any player who sends many chat messages quickly in an attempt to foil spammers.</LI>
+
+<LI>An inter-player victory in the throne room immediately makes you king if you are not already.  Without this, the server would seg-fault if the king lost and left the game and the victor did not return to 0,0.</LI>
+
+<LI>Modified restored characters so they show the present player's address, not the stored address.</LI>
+
+<LI>Seeking the grail no longer causes a degeneration.</LI>
+
+<LI>Fixed a bug with king's curses which could cause huge poison if the player's starting poison was between 0 and 2.</LI>
+
+<LI>Implemented "stuck" variables when players can't move because another player entered the area.  This should fix a bug that crashed the server when the king saved after being encountered.</LI>
+
+<LI>Fixed address resolution in the logging of connections from banned addresses.</LI>
+
+<LI>Broke Do_king into the Do_king and Do_dethrone subroutines.  This should help server stabilitity by doing away with percarious code in itcombat.c that attempted to call Do_king only once.</LI>
+
+<LI>Fixed a comparison where Do_starting_spec compares the char special_type to the short SC_NONE.  This caused characters of no special titles to be given a space after their name.</LI>
+
+<LI>Fixed Do_recall_player to remove trailing blanks from character names.</LI>
+
+<LI>Moved the while loop that checks for connections from Do_check_socket and to Do_main_server_loop in the hopes it will prevent a server crash when players log on the game.</LI>
+
+<LI>Fixed a bug that didn't update mana after the player teleported or intervened.</LI>
+
+<LI>Added a "not enough mana" message when magic bolt is cast with more mana than available.  Before the program would just pass the player's turn.</LI>
+
+<LI>Added random events after inter-player combat to prevent players from avoiding potential combat after getting gold.</LI>
+
+<LI>Modified charms to that a player can only carry a maximum of 99.</LI>
+
+<LI>Valar's no longer lose their status when they save out.  Now, the only way to lose Valar powers is to attemp to log on when another Valar is present.  Hopefully, this will increase the number of powerful characters in the realm.</LI>
+
+<LI>Valar's now encounter size and type monsters like everyone else.  Hopefully, this will encourage Valars to use their powers.</LI>
+
+<LI>Degeneration from intervene and command powers now increase your age as well as cause degeneration.  Before this time, a player would not degenerate due to age until the age caught up.</LI>
+
+<LI>Morgoth's quickness now includes a random factor to make things more exciting.  It has also been increased slightly.</LI>
+
+<LI>Fixed a bug that caused Morgoth to hit only 1 time.  I'll need to re-balance Morgoth now because he has not been using the stats I thought.</LI>
+
+<LI>Killing Morgoth is now worth some experience based on his stats.</LI>
+
+<LI>Added a carriage return to the line when a player successfully allies with Morgoth.</LI>
+
+<LI>Made it so events are not orphaned when moving to the same square.  This should prevent "safe sends" of gold from the King by entering inter-terminal combat with the player.</LI>
+
+<LI>Lowered Morgoth's strength by 1/4.  Morgoth is currently winning 53% of battles.</LI>
+
+<LI>Fixed a problem with corpses from inter-player combat.  They would would show an "11" in the window and hang the game.  Such corpses are now searched automatically, and I removed BODY_EVENTS in the process.</LI>
+
+<LI>Replaced gethostbyaddr with gethostbyaddr_r.  Hopefully, hostnames will now be resolved without crashing the server.</LI>
+
+<LI>Remove valar immunity from old age.  They will now croak when their level plus degenerations times 10 is greater than 10,000.</LI>
+
+</UL>
+
+<H4>4.008 - 9/25/00</H4>
+
+<UL>
+
+<LI>The spells paralyze, transport and transform are now less likely to work on bigger monsters.</LI>
+
+<LI>The character name field is now set to the thread's socket number until a name is entered and accepted.</LI>
+
+<LI>Modified routines to they modify the character's spec and description when they lose their king or valar status when logging on.</LI>
+
+<LI>Valars left to wither and die now lose significant quickness.</LI>
+
+<LI>Gurus now give more shield at higher circles.</LI>
+
+<LI>Removed ip address resolution.  I can't seem to keep the server stable with this active.</LI>
+
+<LI>Created restricted addresses.  Players connecting from such addresses can only log in with an account and a password.</LI>
+
+<LI>Created a web page for AOL (currently restricted) people to automatically request an account.</LI>
+
+<LI>Timeouts are now set to 60 seconds as soon as your game ends.</LI>
+
+<LI>The "instant valar" fix has been changed.  No gold or gems will be dropped by monsters beyond the point of no return.</LI>
+
+<LI>Added a profanity filter.  Words that the server thinks is bad are blotted out.</LI>
+
+<LI>Wizard characters can no longer enter inter-player combat.</LI>
+
+<LI>Characters are now backed up in case of server crash only when they level, instead of every time they reach the start of a turn.</LI>
+
+<LI>Poison will now affect all of a character's health, and not just the base amount.  In addition, a cap the prevents poison fro taking energy in cases with large poison/energy ratios has been removed.</LI>
+
+<LI>Added a help button that displays three paragraphs of introductory text about the game.</LI>
+
+<LI>Improved the spam foiler by adding better catches using non-letter characters and removing swear words that have triggered it incorrectly.</LI>
+
+<LI>Valars are now removed of their title when they quit.  When Valars kept their title, they became instant "hit-men", and spent more time off the game than on.</LI>
+
+<LI>Player addresses are no longer available to other players.  People were complaining that other players were hacking their computers.</LI>
+
+<LI>Changed the Druid message so now it specificallys says that the character gains experience.</LI>
+
+<LI>Turned the socket SO_REUSEADDR option on, so the game can restart even when hung sockets from the previous running are still timing out.</LI>
+
+<LI>Wizard characters can now mute and unmute a player's chat ability.</LI>
+
+<LI>Wizard characters now have the option of kicking specific players.  This knocks them totally out of the game immediately.</LI>
+
+<LI>Players may by suspended by a wizard.  When suspended, a player can not play, and can only chat with wizard characters.</LI>
+
+<LI>Inter-player combat spells were dropped in effectiveness.  Too many players were complaining about low level experimentos killing them.</LI>
+
+<LI>Fixed some bad code that always showed coordinates of players using "Info" and "Players".  Now, furthur out and cloaked players aren't always shown.</LI>
+
+<LI>Chat channels were added.  Characters have 8 channels to choose from.</LI>
+
+</UL>
+
+<H4>4.009 - 12/10/00</H4>
+
+<UL>
+
+<LI>Fixed a bug which allowed level 1000 characters to find a crown even though their other crowns had been cashed in.</LI>
+
+<LI>Modified the clients to automatically connect to the machine they were downloaded from.  This is an applet requirement and make the code more portable.</LI>
+
+<LI>The Java 1.02 client now creates a 600x400 window on startup.</LI>
+
+<LI>Saruman srambles have been modified greatly.
+First minimum numbers have been put in place on brains, magic level and sin to prevent the game from returning "-inf" or "nan" hits on players.
+Second, values for max_energy and max_strength scrambled out are now the stat value after equipment, not before.
+This is to counteract players being able to increase the average value of numbers that scramble by resting during battle which increases mana.
+If this is not enough, energy and strength may have to be scrambled in instead of max_energy and max_strength.
+Third, all stats are scrambled every time, not just two.</LI>
+
+<LI>Fixed a problem where the name of the council member was gibberish to the target when a degeneration intervene was cast on them.</LI>
+
+<LI>Changed the tax rate so high level players are taxed at a lower rate.  This is to prevent the king receiving huge stockpiles of gold.</LI>
+
+<LI>Modified melee ands skirmish so they exclude brains.  This should also lower the average damage done with each hit.  The change that added brains imbalanced the game so melee was the best way to kill monsters.</LI>
+
+<LI>Changed the mana regeneration equation so that characters with high magic levels gain mana faster.  With luck, this change will give characters with a low magic level less spell power so they depend on more on their brawn.</LI>
+
+<LI>The magic bolt spell now has a much lower minimum damage and is heavilly dependant on magic level.  Again, this is an attempt to distinguish spell casters from fighters.</LI>
+
+<LI>The increase strength and invisibility spells effectiveness is now dependant on magic level.  The higher the magic level, the more effective these spells will be.  Another attempt to distinguish fighters from spell casters.</LI>
+
+<LI>Books now have a lower effectiveness with higher values of brains.  With luckout being re-implemented as a method of gaining experience, brains required some sort of limit, and I thought this method would be better than a cap.</LI>
+
+<LI>Luckout is now considered defeating a monster so treasure and experience are rewarded.  In inter-player combat, opponent have a higher resistance to luckout, so the defender receives a bonus.</LI>
+
+<LI>Increase might, invisibility and paralyze are no longer affected by brains.  That factor has been dropped from the equations.</LI>
+
+<LI>Changed the code for inflicting damage.  A monster should no longer hit for 0 damage.</LI>
+
+<LI>Made major modification to all characters and their stats in an attempt to make use of the new luckout ability and to balance characters and their abilities.</LI>
+
+<LI>Added a "New Password" function under "Info" so players can now change their character's passwords.,</LI>
+
+<LI>Books have been moved from the third to the second post and swords have been moved to the third, as it was in Phantasia 3.  This will help characters increase their chance to Luckout, a skill most valuable in the inner circles.</LI>
+
+<LI>Returned to the Phantasia 3 curse rate for gold and gems.</LI>
+
+<LI>Suspended players are now automatically muted and are killed if they close the client.</LI>
+
+<LI>Force field strength is now dependant on magic level only.</LI>
+
+<LI>Fixed a bug that allowed character to load the same saved character multiple times.</LI>
+
+<LI>Removed the requirement for the server to be in "PLAY_GAME" mode to save a character.</LI>
+
+<LI>Limited the profanity filter to only work on channel 1.</LI>
+
+<LI>Fixed a bug that allowed characters to hit the compass on a Do_information which would cause the game to close instantly and lose the player's character.</LI>
+
+<LI>More books may now be bought; up to half a player's level without risk.</LI>
+
+<LI>The channel a player is on is now listed on the user pannel.</LI>
+
+<LI>It is no longer possible to luckout aginst the Dark Lord.</LI>
+
+<LI>Fixed the ring wraith code so a consumed player replaces "The Idiot", not "An Aspidchelone".</LI>
+
+<LI>A bug prevented quicksilver from degenerating when character reaches speed 23.  This has been removed so quicksilver will continue to degenerate.</LI>
+
+<LI>The succubus now does significantly more damage under force fields because it was easy to handle the attack before.  Watch out everyone!</LI>
+
+<LI>Balrogs may now strike for damage.  Trust me, they hit HARD.</LI>
+
+<LI>Transform will no longer backfire when used on a monster.</LI>
+
+<LI>Evade is now much more likely to succeed in inter-player combat.</LI>
+
+<LI>Fixed a bug that caused players to encounter monsters while cloaked or in the throne room after inter-player combat.</LI>
+
+<LI>Gems are taxed once again.  Have fun!</LI>
+
+<LI>It is now possible to evade from a mimic, although quite hard.  This is to prevent a huge loop as a disconnected high level player attempts to evade from a size 1 mimic.</LI>
+
+</UL>
+
+<H4>4.010 - 01/20/01</H4>
+
+<UL>
+
+<LI>Character names are now case insensitive!  This means that "theWizard" and THEwIZARD" are the same character.  Because of this, the import of characters from the previous version may have to change the names of some characters.  The list of changes is listed on the "Bugs" web page.  Check there before you ban yourself for guessing the wrong password too many times!</LI>
+
+<LI>Monster strength now increases by 50% of base for each size as opposed to the %100 P4 has always been.  For example, a size 5 orc will now have 300% the strength of a size 1 orc.  Before it would have been 500%.  This is another change back to Phantasia 3 formulas.</LI>
+
+<LI>Increased sin received by hunting.</LI>
+
+<LI>Modified magic bolt so it is a little more random and a little less effective at higher levels.</LI>
+
+<LI>Added purgatory.  Characters that disconnect while fighting monsters are put into purgatory and saved the next time thier turn to fight comes up.  Characters in inter-terminal combat still must evade the battle first.  Please note that it is still very possible for a character to die after a disconnect.</LI>
+
+<LI>Strength, brains and magic level treasures are now dependent on character classes.  For example, a fighter will gain more strength from Robin Hood than a magic-user.  This is an attempt to keep solid class distinctions in late game play.</LI>
+
+<LI>Mana regeneration has been lowered.  We're back to the old Phantasia 3 equation and I promise to not try to fix things that aren't broke in the future.</LI>
+
+<LI>All characters ar affected by poison equally now.  Before characters with the least energy also were affected the most.</LI>
+
+<LI>The space bar will now automatically hit the left-most button on the 1.18 Java client.  This should be more convient as prevent an error generated by Java 1.18 clients running Windows 2000.</LI>
+
+<LI>To make the space bar option more useful, "Rest" and "Move To" have swapped places so the space bar rests.</LI>
+
+<LI>It is no longer possible for a player to blow their brains by buying books.  Having this limitation accomplished nothing but trapping ignorant new players.  Learn my children, learn!</LI>
+
+<LI>Players no longer automatically enter trading posts.  Instead, a "Enter Post" button appears when on a post square.</LI>
+
+<LI>Treasures that reduced sin are now only half to a quarter as effective.  Since P4 gives multiple treasures from flocking monsters, sin has never been a problem.  Hopefully people will think twice with being unhonerable now.</LI>
+
+<LI>Treasures that reduce poison are half as effective for the same reason as above.  Higher level characters had no poison worries at all.</LI>
+
+<LI>Higher treasure types have been modified.  The Nazgul has been moved from type 12 to type 10.  Ungoliant went from 10 to 12.  Leanan-Sidhe is now treasure type 13 and the Dark Lord 14.  The treasures these monsters dropped before followed so a Nazgul and Dark Lord still drops rings.  This was an attempt to modify gold and gem drops from these monsters.  It made little sense that the Nazgul, weaker in all respects, would drop more gems than Leanan-Sidhe.</LI>
+
+<LI>Sin for hunting has been increased.  It may actually add to something now.</LI>
+
+<LI>Fixed "move close" routines.  Before the algorithm favored negative numbers due to rounding problems.  Most people will notice this change when their character evades to distant locations, but the move will be less than one step.</LI>
+
+<LI>Changed the player data strcture.  It received cloak, circle from client structure, as well as many new elements including character name in lowercase, last access info, unsuccessful login attempt counter and creation information.  These changes should help me and the players track characters better.</LI>
+
+<LI>All passwords are now hash encrypted</LI>
+
+<LI>Added accounts.  Characters must log in with an account which requires an e-mail address.  These account will improve character security because characters can be tied to specific accounts, improve player identification by game logs and other players and allow players to get their own password resets.</LI>
+
+<LI>Rewrote the character loading procedures.  New procedures are cleaner, more efficient and seal the character duplication bug.</LI>
+
+<LI>Wrote Do_send_character_event to remove a lot of redundant code in the tampering code and an instance of mutex locks crossing procedures.</LI>
+
+<LI>Changed experience needed to level up to somthing a little easier to calculate backwards.</LI>
+
+<LI>Added a second character file that wizard characters can transfer players from.  This will make restoring characters easier.</LI>
+
+<LI>Characters forced out of the realm by error or by wizard provoking will now die by suicide.</LI>
+
+<LI>Created a new log listing each time a character levels, the time it took them and the age of the character.  This log also records creations and deaths.</LI>
+
+<LI>Created a purchase log.  If you buy it, it goes here.</LI>
+
+<LI>Created a debug log.  Information kept to track down bugs now belong here.</LI>
+
+<LI>Created a monster log.  The results of battles are listed here to better help balance the game.</LI>
+
+<LI>Placed tighter restrictions on character names.  They may no longer contain characters other than letters, numbers and underscores.</LI>
+
+<LI>All file reading/writing is mutex locked now.</LI>
+
+<LI>Existing logs now use a common format that keeps track of specific connections.  This will make it much easier to tell who's doing what.</LI>
+
+<LI>Created a "character options" menu.  Here, players can list all characters belonging to their account, change character passwords, request a reset of a character's password, change a character name and allow their characters to be loaded by other accounts.</LI>
+
+<LI>The wizard channel has been moved to channel 9 and wizards do not automatically move there when they suspend someone.</LI>
+
+<LI>Created tags.  These items are rejects, bans, mutes, prefixes, suffixes and suicides that are designed to stay with players.</LI>
+
+<LI>Created a new history file that keeps track of wizard actions on specific players and characters.  This should help the admins stay on the same page as each other and remember who did what and when.</LI>
+
+<LI>Characters and characters now remember who last used them and displays this information when someone logs in.  In addition, the game will disply the number of times the wrong password has been entered since the last login.</LI>
+
+<LI>The chage password button for character has been moved under the character button after you log in with your account.  In addition, a reset password button exists which will change a character password and e-mail it to you.  This is the only means to gain access to a character you've forgotten the password of.</LI>
+
+<LI>Improved the character examine strcture.  It's now in a more readable format and contains information like "experinece to next level" and "gander".</LI>
+
+<LI>Wizard characters no longer reside in the realm, but in Valhala.</LI>
+
+<LI>Safe sends have been permanently eliminated by not allowing bestows on posts.  If a character is posted and receives gold, the store owner will take it.</LI>
+
+<LI>Fixed a monster order bug.  Monster friends now get added to the front of the queue instead of the back, so a monster's friends does not have a monster in between.  This is also true for any monster that calls another.</LI>
+
+<LI>Fixed a bug where damage from a merchant transport didn't appear until later.  A players stats should now be updated instantly.</LI>
+
+</UL>
+
+<H4>4.011 - 05/25/01</H4>
+
+<UL>
+
+<LI>All or Nothing, Paralyze, Transport and Transform have all been modified and use a new equation.  Success is determined by monster experience and player magic level.</LI>
+
+<LI>Character mana was increased for everyone except the magic-user.  When did I drop it down?  What was I thinking?</LI>
+
+<LI>Character starting strength was dropped and increases were raised.  Melee was too powerful of an attack for starting characters since mosters could be slain in one blow.  The increase should help fighters in late game play.</LI>
+
+<LI>Quickness spread was made a little bigger.  Elves just didn't have enough of an advantage and speed didn't seem to be a large enough facter in character progression.</LI>
+
+<LI>Poison now increases for higher circles for monsters, curses and plagues.</LI>
+
+<LI>More holy water is needed to kill larger faeries.</LI>
+
+<LI>A new position has been added called Steward.  This position is much like the king of old, but the position is attained by finding a staff and returning to 0,0.  The position is available to characters between the levels of 10 and 200.  A steward and a king/queen can not exist at the same time or both occupy The Lord's Chamber.</LI>
+
+<LI>Kings have been redone.  Crowns are now only available from the Dark Lord, and a player can only become king between the levels 1000 and 2000.  Kings still have the ability to collect taxes, in addition to other powers, but can no longer bestow money.</LI>
+
+<LI>Players on the same square can now chat to each other regardless of the channel they are on.  These chat messages are prefixed with the channel they are from.</LI>
+
+<LI>Saruman scrambles have been changed again since players use it as a increase magic level loophole.  When a high stats now scrambles in, it has a high probability of being rounded down to the original value.  Saruman also transports away after a scramble.</LI>
+
+<LI>Corpses found right after a player vs. player victory now have the same chance to be cursed as a regular corpse.  This is to make PKing for equipment less effective.</LI>
+
+<LI>Council and valar members no longer leave corpses.  This should hinder players from passing on disproportionate equipment to a starting character when their old character reaches the end of life.</LI>
+
+<LI>I made a few changes to the monster table.  Orcs and Stirges swapped position and treasure type, as did Crebins and Gnolls.  Scatha The Worm and Red Caps just switched treasure type.</LI>
+
+<LI>Character speed now drops after multiple rounds of combat.  It can be replenished by resting.</LI>
+
+<LI>Characters may no longer change their name.  People were mainly using it to anonymously PK.</LI>
+
+<LI>The point of no return has been brought back in to 1 million.</LI>
+
+<LI>Sin can now be accumulated from many sources, not just hunting and virgins.</LI>
+
+<LI>A character's speed can now degenerate to 0.  It could only drop to a minimum of 23 before.</LI>
+
+<LI>Invisibility has been renamed to haste.  Both haste and increase might have been modified so each spell is dependent on magic level and your base stat that is modified.  For example, haste will be more effective with a higher magic level and/or a higher speed.</LI>
+
+<LI>Players would cloak and then degenerate and lose the ability, but still be cloaked.  With the ability gone, it was then impossible to uncloak.  That problem should be fixed.</LI>
+
+<LI>Sustaining cloak is now dependent on the area you're in.  Higher circles require more mana to remain cloaked.</LI>
+
+<LI>Increased the timeout in the login area to two minutes.</LI>
+
+<LI>When you don't have enough magic level, transform now becomes a cancel button.</LI>
+
+<LI>Added a new treasure trove.  This is a treasure placed somewhere within the first 8 circles which is worth gold and gems when found.  When it is found, a new one is created.</LI>
+
+<LI>Added lembas, an elvish waybread that cures small amounts of poison.</LI>
+
+<LI>Created Wayland Smith, a treasure who will enhance your equipment.  When found, you specify what item you wish improved, and it will increase up to 1%.</LI>
+
+<LI>Reorganized the treasure table.  Shields can now be found in the first few circles.  Useless equipment does not take up the high treasure types and other items have been shuffled around to make treasure more valued.</LI>
+
+<LI>Added 1 to all the evade factors.  If two players with zero speed moved onto the same square, they would never be able to get away.</LI>
+
+<LI>Starting magic level for magic users and Elves have been dropped.  These characters had too high a survival rate.</LI>
+
+<LI>Teleport has been modified.  There is no longer a maximum distance a player can travel and mana costs have been reduced and made dependent on magic level.  Players are told how much mana a teleport will use before you approve the trip.  It is no longer possible to teleport while cloaked.</LI>
+
+<LI>Shops now sell amulets instead of charms.  The cost is the same.  This change was made to make charms more valuable to to make the Dark Lord harder to defeat.</LI>
+
+<LI>Dark Lords may now require more charms to defeat.  This will prevent players from boosting with a Dark Lord in absurd coordinates.  If you enounter a Dark Lord, and he doesn't instantly die, I suggest you run.</LI>
+
+<LI>The palantir is now less accurate on the location of the grail.</LI>
+
+<LI>Combat moves no longer age the player unless a player rests, but characters now degenerate every 750 moves instead of 1000.  This should remove the punishment of being a fighter since you spend more time in combat.</LI>
+
+<LI>Valars no longer die of old age.</LI>
+
+<LI>Experience transferred in a nick has been lowered.</LI>
+
+<LI>Relocate can only be used inside the point of no return.  Coordinates beyond will not be accepted and relocate events for someone beyond will be ignored.  This will prevent a valar from boosting a character easily.</LI>
+
+<LI>The valar power "bless" now costs a life or valarship if none are left.</LI>
+
+<LI>"Sanctify" has been renamed to "restore" and no longer adds energy, strength or magic level.</LI>
+
+<LI>The valar power "broadcast" has been added.  When used, the next chat message will appear on all channels except 9 and be prefixed with the source channel.</LI>
+
+<LI>Characters at speed 0 with no socket connection are now instantly killed.  This will prevent games from hanging as a level one monster slowly eats away billions of energy.</LI>
+
+<LI>Character treasures may now do nothing if the player has too much sin.</LI>
+
+<LI>A new button was added to treasure.  You can now "leave" and you will not look at any more items in the square.</LI>
+
+<LI>Using certain powers will give a player sin.  Generally the nastier the power, the more sin it creates.</LI>
+
+<LI>Names are now held in limbo until the killed player creates a new character, loads a character or leaves the game.  Inconsiderate players will no longer be able to steal the names of characters that just died.</LI>
+
+<LI>Character names are now checked for the number of underscores.  Names with too many are rejected.</LI>
+
+<LI>Characters no longer "rape and pillage", but only pillage and are given a choice when they encounter a village.  Experience given is now dependent on circle and a little gold is found as well.</LI>
+
+<LI>Fixed a possible bug where a nicked player gets negative experience.</LI>
+
+<LI>Removed the ability for summon monster and throw monster to call a Dark Lord.</LI>
+
+<LI>Quicksilver now increases speed by the square root of the number the character has.  In addition, the 99 maximum has been removed.</LI>
+
+<LI>Fixed a bug where account password resets passed the non-lowercase version of the account to Do_modify_account.  The routine would fail with an error if the player entered any capital letters.</LI>
+
+<LI>Do_load_character would log the deletion of characters from lack of use in uppercase.  This has been fixed.</LI>
+
+<LI>Changed the council heal power.  Instead of healing poison, the heal command would double it.</LI>
+
+<LI>Fixed a bug in the name change code.  The code would log that the name had been changed to the original old name and then try to release the old name from limbo, generating an error.</LI>
+
+<LI>Replaced random() with random_r() as well as creating a seeding routine that runs every time someone connects to the game.  This should make better random numbers and solve some instability issues.</LI>
+
+<LI>Fixed clear screen issues in the "Info" commands "Channel" and "No Announce" as well as after player vs. player combat and the end of the account creation screen.</LI>
+
+<LI>Maximum energy was set to 1 when the grail was found, and the player was not worthy enough to behold it.  This means that the player could not get energy above 1 even though he or she may have had a huge shield.</LI>
+
+<LI>Modified accounts listed in the game log so they are always in lowercase.</LI>
+
+<LI>Added a "invigorate" king power.  Players this is used on whill receive a strength bonus for their next combat.  This power is not cumulative.</LI>
+
+<LI>Added "oust", a king power that is a little stronger than the old king transport ability.  The steward "transport" power has been reduced in power, but trust me, it's plenty hard to get back.</LI>
+
+<LI>The king/queen can now "knight" one player.  That person has his energy increased 25% and speed increased 10% for as long as each player is in the game.  If another player is knighted, the first loses the bonuses.</LI>
+
+<LI>The council curse has been given to the king and renamed "execrate".</LI>
+
+<LI>Council members can now blind players.</LI>
+
+<LI>Added a "slap" council power.  This will knock anoter player off location, send him or her to another channel, do some damage and possibly cause the character to save out.</LI>
+
+<LI>Nazguls can now take blessings.  Their brain drain power has been passed to the Succubus and the Succubus force field penetration power has gone to the Titan.  Nazguls may still want a ring you're wearing, but get angry if you refuse.</LI>
+
+</UL>
+
+<H4>4.012 - 06/10/01</H4>
+
+<UL>
+
+<LI>Effectiveness of transport, paralyze, and transform was doubled, and
+backfire chances plus transport treasure percentage was also reduced.</LI>
+
+<LI>The monster list has been shuffled slightly.  The Outer Waste is now 
+safer to adventure in, but it is still more dangerous than the Moors.  
+Gnolls were added to the first few circles to give a little more variety 
+and danger.</LI>
+
+<LI>The Dead Marshes were extended slightly, and a new area was added beyond
+Morannon.</LI>
+
+<LI>Saruman only scrambles one pair of statistics now, and no longer teleports 
+away after a scramble.  However, there is only a small chance that a 
+scramble will benefit your character.</LI>
+
+<LI>Nazgul now can curse the player, destroying a blessing, or halving energy
+and adding some poison</LI>.
+
+<LI>A special "attack" was added for the Idiot.</LI>.
+
+<LI>Only athelas reduces poison below 0.  This was done to make it more valuable and poison more fearsome.</LI>
+
+<LI>The king/queen cannot die while in power.  Instead, they merely lose the position.</LI>
+
+<LI>Jabberwocks may now destroy quicksilver.  Watch out!</LI>
+
+<LI>Treasures have increased in variance and some have been improved in strength(i.e. swords are bigger).</LI>
+
+<LI>The amount of degeneration has been modified slightly.</LI>
+
+<LI>Treasure trove scrolls will no longer appear for characters above level 
+200.</LI>
+
+<LI>Modnar's treasure type was reduced slightly.</LI>
+
+<LI>Killing higher-level players adds more to your sin.</LI>
+
+<LI>The treasure trove now contains a blessing plus some gems but is
+slightly harder to find.</LI>
+
+<LI>You may lose your blessing if your sin gets too high.</LI>
+
+<LI>Females will now encounter Incubi instead of Succubi.</LI>
+
+<LI>Gold and gems are no longer automatically taxed.  Instead, a tax man wanders the realm and helps himself to 7% of character treasure.</LI>
+
+<LI>Haste and increase might can no longer be cast on Morgoth and allying with him gives some sin.</LI>
+
+<LI>The king and stewards now use differnt coffers and collected tax is divided among them.  The stewards coffer is always empty when a new player rises to the position.</LI>
+
+<LI>Bestows have been capped and random events can occur after a player rceives gold.</LI>
+
+<LI>Modified Wayland Smith.  He now gives your equipment more of a boost.</LI>
+
+<LI>Sin for killing another player is now dependant on level of the character killed.</LI>
+
+<LI>Stirges' experience has been reduced.</LI>
+
+<LI>Extended the range of experimentos.</LI>
+
+<LI>In player vs. player combat, first attack is now always rewarded to the defender.  Speed still affects subsequent attacks, but not the first.  Blessing also have no effect for player combat.</LI>
+
+<LI>Game shutdowns are handled more elegantly.</LI>
+
+<LI>Crowns are now more frequent.</LI>
+
+<LI>Muted characters can no longer create characters.  Players would create characters with messages in their names.</LI>
+
+<LI>Fixed a bug which allowed players to save their characters after dying.</LI>
+
+<LI>Intervene and command options have increased in cost.</LI>
+
+<LI>Staves no longer appear to players who hang around below level 200.</LI>
+
+<LI>Books' effectiveness are now based on class.</LI>
+
+<LI>Morgoth has been weakened slightly but can now appear anywhere.</LI>
+
+<LI>Treasures now tend to reduce less sin but give more mana and heal more poison.</LI>
+
+<LI>A cloaked player who lands on the Grail now moves it.</LI>
+
+<LI>Unicorns now drop more valuable treasure, wichtleins less, and their positions have been swapped.</LI>
+
+<LI>Teleport is now more expensive.</LI> 
+
+<LI>Steward can now bestow up to 5000 gold at once, but the gold now comes from one's gem supply.</LI>
+
+<LI>Evade and Luckout buttons have been swapped to make it easier to pick up treasure after a long fight.</LI>
+
+<LI>The trove has been brought in slightly.</LI>
+
+<LI>Fixed a bug where the dark lord and shrieker were able to attack 
+an idle player.</LI>
+
+<LI>Fixed a bug with the scoreboard not showing cause of death.</LI>
+
+<LI>Fixed a bug with Jabberwocks not showing that they are burbling.</LI>
+
+<LI>Fixed a bug with fatigue not registering properly.  Be warned -- do not go idle in combat, or the game will think you are tired!</LI>
+
+<LI>Elves now immune to plague.</LI>
+
+<LI>Early Outer Waste monsters toned down a little and some monsters' 
+experience increased.</LI>
+
+<LI>Swapped Bogie and Bogle, and their corresponding treasure types.</LI>
+
+<LI>Force field mana cost now based on magic level.</LI>
+
+<LI>Poison reducing treasures now cure fatigue.</LI>
+
+<LI>Reduced variance of stat-boosting treasures.</LI>
+
+<LI>Fixed a bug with an inadequate force field.</LI>
+
+<LI>Increased the amount a steward gets from taxes.</LI>
+
+<LI>Blinded characters can no longer read from scrolls.</LI>
+
+<LI>Fixed a bug where tax collectors didn't collect gems.</LI>
+
+<LI>Renamed the Bogie to the Smurf.</LI>
+
+<LI>Inc. Might and Haste cost also based on magic level now.</LI>
+
+<LI>Added a Throw Smurf ability to the Steward and a Send Tax Collector 
+ability to the King.</LI>
+
+<LI>Fixed a bug with fatigue carrying over to new characters.</LI>
+
+<LI>Added a cancel button for post purchases.</LI>
+
+<LI>Weakened Morgoth even more but made him harder to evade.</LI>
+
+<LI>Medic now requires more than half gold for guaranteed success if 
+poison is greater than 1, but less gold if poison is smaller than 1.</LI>
+
+
+</UL>
+
+<H4>4.013 - 07/15/01</H4>
+
+<UL>
+
+<LI>Each size is now gradually harder than the next one.  No more big
+jumps in difficulty between size 8 and 9!  The Outer Waste has been pushed
+back a circle.</LI>
+
+<LI>The trove has been pushed out farther to compensate for the easier
+progression of monsters.</LI>
+
+<LI>Dwarves heal faster on resting and have a 25% chance to avoid any 
+special attack a monster makes (i.e. Cerberus steal, Ungoliant bite).</LI>
+
+<LI>Medics need more money to heal large amounts of poison, but less than
+half money can guarantee healing if poison is below 1.</LI>
+
+<LI>Cold-Drakes are now treasure type 8, Argus and Cacus are 7, and their
+positions have been switched accordingly.  Modnar's treasure also lowered, but 
+Morgoth's raised.</LI>
+
+<LI>Treasure table has been slightly modified.  Lembas renamed to smurf berries,
+Miruvor renamed to Lembas, Lancelot renamed to Treebeard and type 7, 
+Merlyn is now type 8, Gwaihir is now type 6, and Gandalf is another 
+treasure that Saruman may drop.</LI>
+
+<LI>Mimics can no longer be Mimics.</LI>
+
+<LI>Evading now leaves the character within range of his original square.</LI>
+
+<LI>Moved the message of the day to the login screen.</LI>
+
+<LI>Shuffled the Moors monsters so that they would provide a good mix of treasures early on.</LI>
+
+<LI>Doubled the effectiveness of smurf berries and lembas.</LI>
+
+<LI>It now takes longer to become fatigued.</LI>
+
+<LI>Raised the minimum speed for all classes by 1 and the maximum speed for 
+dwarves by 1.</LI>
+
+<LI>Lowered starting brains and the brain gain rate for mages.</LI>
+
+<LI>Initial magic level tweaked slightly.</LI>
+
+<LI>Players now can become a Dark Lord/Lady if they are sufficiently nasty.</LI>
+
+<LI>Saruman no longer scrambles sin, but is always guaranteed to swap two different stats.</LI>
+
+<LI>The Tax Collector appears more frequently for higher-level characters</LI>
+
+<LI>Virgins may now catch the plague and die.</LI>
+
+<LI>Failing to confront Morgoth now results in sin, and allying with him results in heavy sin.</LI>
+
+<LI>Treasure curses are now less damaging.</LI>
+
+<LI>Character purge rate now 30+ days for good characters, 3 days for new 
+characters.  Accounts still take 90 days to delete.</LI>
+
+<LI>Unicorns now only drop trove and pick scrolls, but are picky about the sins of their rescuers.</LI>
+
+<LI>The edge of the world is now at 100 million.</LI>
+
+<LI>Low-level experimentos can no longer spy on character coordinates.</LI>
+
+<LI>Circles 16-19 are now the Cracks of Doom, to let players know that the
+nastiest monsters can show up there.</LI>
+
+<LI>Morons now whine.</LI>
+
+<LI>Strength and haste scrolls have been improved.</LI>
+
+<LI>Smurf berries now heal more damage; athelas now cures blindness.</LI>
+
+<LI>Experimentos can no longer cheat a merchant to bounce really far out.</LI>
+
+</UL>
+
+<H4>4.014 - 08/03/01</H4>
+
+<UL>
+
+<LI>The king no longer loses the throne when leaving, except to 
+another king.  Also, kings may no longer be nicked.</LI>
+
+<LI>Treasure table modifications
+
+    <UL>
+    <LI>Amulets now treasure type 1.  Monsters can drop more than 1, but you 
+        need more amulets for more powerful curses.  Amulets are now checked
+        before charms.  Amulet cost now 500 gold at posts.</LI>
+    <LI>Druids now treasure type 2.  They give slightly more experience and 
+        are slightly more tolerant.</LI>
+    <LI>Hermits also heal slightly.</LI>
+    <LI>Virgins give a bit more experience if the sinful option is chosen.</LI>
+    <LI>Mana treasures are now based on the character's affinity for mana.</LI>
+    <LI>With the more common amulets, berries and lembas have been reduced in
+        strength.</LI>
+    <LI>Aes Sedai no longer give brains, but now may completely clean 
+        away all sin.</LI>
+    <LI>Tablets are a new treasure type 6 that give the brains like an Aes
+        Sedai used to.</LI>
+    <LI>Athelas now completely heals the player as an extra bonus.</LI>
+    <LI>Charms are now treasure type 9.  Carrying several charms will now 
+        block almost any special attack a monster makes (exceptions: Dark Lord,
+        Shrieker, Balrog).  (The dwarf block is checked before charms, 
+        so that race still has an advantage.)  One charm will also
+        protect against plagues and treasure curses.  However, the Dark Lord
+        now requires many more charms to defeat.</LI>
+    <LI>Gandalf no longer gives mana, but is a far better teacher of magic
+        than Merlyn.</LI>
+    <LI>The Dark Lord no longer drops crowns.  However, you must still defeat 
+        him to become the king or queen.  See below.</LI>
+    </UL>
+  
+</LI>
+
+<LI>In order to become king, a player must throw the One Ring into a lava pool 
+in the Cracks of Doom.  Beware, not everyone has the moral strength for 
+such a task.</LI>
+
+<LI>Gurus may now give a charm to the extremely virtuous.</LI>
+
+<LI>Treasures may now appear in the first circle.</LI>
+
+<LI>Leanan-Sidhe's strength sap has been increased in deadliness.</LI>
+
+<LI>Mimics no longer summon friends, but their speed has been increased.</LI>
+
+<LI>Melee and Skirmish are now slightly more effective at reducing a monster's 
+statistics.</LI>
+
+<LI>Quicksilver's price has been lowered to 2000 gold.</LI>
+
+<LI>Dwarves no longer treat "talking" or "whining" as a special attack.</LI>
+
+<LI>Players may now become wizard apprentices if they demonstrate maturity, 
+responsibility, and dedication. </LI>
+
+<LI>Special characters are now separated out in the title page.  Wizards and 
+special characters no longer show up on the high list of commoners.</LI>
+
+<LI>A three second pause was added to the opening message so that people would 
+not automatically skip past it.</LI>
+
+<LI>A two second pause was added when another player attacks so that people
+would not mistake an attacking player for a monster.</LI>
+
+<LI>Cerberus no longer steals staves.</LI>
+
+<LI>Fixed a bug that allowed players to escape combat with negative energy.
+From now on, any players that enter the realm with negative energy immediately 
+die from internal bleeding.</LI>
+
+<LI>Cerberus and the Jabberwock are more dangerous when they sniff extremely
+high levels of the metals they desire.</LI>
+
+<LI>Charms are no longer consumed for moron whines and smurf sayings.  However, idiot drool is still protected against.</LI>
+
+<LI>Kings can no longer invigorate since the power of the strength spell 
+has been increased.</LI>
+
+<LI>The grail now appears at a distance commensurate with the level of 
+the player that last found it.</LI>
+
+<LI>The virgin interface is now consistent : the default response gives
+sin and experience for both genders.</LI>
+
+<LI>Balrogs no longer drain experience from council members and kings.</LI>
+
+<LI>Lembas now heals a significant amount of energy.</LI>
+
+<LI>Reduced the number of gems in the trove by a little.</LI>
+
+<LI>Magic bolts now have a higher chance of working (dependant on magic level) 
+in interplayer combat, but they don't hit for as much damage as normally.</LI>
+
+<LI>Relocate sin now depends on how far out the victim is transported.</LI>
+
+
+<H4>4.015 - 08/18/01</H4>
+-------------------------
+
+<LI>Morgoth is now much deadlier against ex-valars instead of valars, 
+since nobody was sticking around to enjoy the fruits of valarhood.</LI>
+
+<LI>Killing level 0 characters no longer gives sin, and killing other
+low-level characters doesn't add very much.  Attacking any character, 
+on the other hand, still adds half a sin point.  This is to allow people
+to defend themselves from attacking experimentos.</LI>
+
+<LI>Scoreboard is now accessible from the info menu within the game.</LI>
+
+<LI>Villages and tax collectors no longer appear in the Point of No Return.</LI>
+
+<LI>Transforming a monster while blind no longer tells the player the
+new monster.</LI>
+
+<LI>Merchants now call low-level players who buy too much of a item
+a thief.</LI>
+
+<LI>The auto-mutes by the server have been softened slightly.</LI>
+
+<LI>Ringwraiths are now clearly marked as idiots.</LI>
+
+<LI>Being killed by smurfs now turns you into a smurf.</LI>
+
+<LI>Experimentos now gain statistics randomly; before, they were gaining 
+at the halfling rate.</LI>
+
+<LI>Wizard and apprentice powers now trigger a server announcement.</LI>
+
+<LI>Experimentos now gain statistics from treasure at the worst possible
+rate for all classes (instead of none at all).</LI>
+
+<LI>The slap power has also been given to valars and triggers a server announcement.</LI>
+
+<LI>Players can no longer rest in inter-player combat.</LI>
+
+<LI>Morgoth weakened in strength once more, but players are no longer able to 
+stack force fields against him.  This makes life fairer for magic-poor 
+classes.  Also, Morgoth now has a fixed treasure type: twelve.</LI>
+
+<LI>Cancelling a spell no longer gives a monster a chance to attack.</LI>
+
+<LI>The Cracks of Doom have been significantly increased in danger.</LI>
+
+<LI>A bug with spells working after inter-player combat has been fixed.</LI>
+
+
+12/6/01
+-------
+
+<LI>Valar is now quasi-permanent, like king.</LI>
+
+<LI>Valars and Apprentices now get special entry messages like the King or 
+Queen.</LI>
+
+<LI>A bug in the Cracks of Doom had size 16 monsters appearing as normal.
+Now all circles in the Cracks will be equally dangerous.  Tread carefully!</LI>
+
+<LI>A slight bug with certain classes' disadvantages with ring-tossing code 
+been fixed.</LI>
+
+<LI>Morgoth strengthened and the grail is now harder to reach for ex-valars.  
+Council and Valar powers now cost a percentage of mana instead of a fixed 
+cost.</LI>
+
+<LI>Gandalf will now heal blindness.</LI>
+
+<LI>The Dark Lord will drop fewer type 9 treasures now.</LI>
+
+<LI>Names are now limited to 16 characters in length.</LI>
+
+<LI>It is now harder to luckout in inter-player combat.</LI>
+
+<LI>Experimentos now have a small chance of cheating death by coming fully 
+healed after a monster kills them.</LI>
+
+</UL>
+
+
+<P>
+<H4>4.02 - 12/24/01 (MAJOR CHANGES)</H4><P>
+--------------------------------
+
+
+<UL>
+<LI> The realm has changed significantly :
+     <UL>
+     <LI> The Cracks are now "size 27-28".  Monsters are extremely fierce here.  Volcanos are now a type 9 treasure.  
+     <LI> The Plateau of Gorgoroth is now size 25-30, excluding the Cracks.  Monsters are relatively fierce here.  
+     <LI> The Dead Marshes is now size 20-35, excluding the Plateau.  Monsters are unchanged from the old version.  
+
+<P> In these areas, movement slows to a crawl, cloaking is extremely expensive,
+and teleportation into the area is blocked.  Note that Gwaihir, the Valar Relocate, Thaumaturge transports, and steward/king transports still allow entry.
+
+<P>
+
+     <LI> Size 16-19 is now the Outer Waste, but with the potential for any monster.
+     <LI> Morannon is now size 36-99.
+     <LI> Kennaquahir is now beyond Morannon.
+     </UL>
+
+     
+<LI> Maximum movement is now 100 squares in a cardinal direction.  No more striding about the realm thousands of squares at a time for high-level characters!
+<LI> Monsters' energy values are now slightly randomized.  Their energy will
+be close to the old value, though.
+<LI> Blessings are now consumed by the Dark Lord only when you don't have enough charms; Charms now protect against blessing destruction.  Also, blessings no longer guarantee first strike (but still make it much more probable), and their effectiveness largely depends on the player's sin.
+<LI> Blessings are now only sold in the 2500/2500 posts.
+<LI> Charm rate increased slightly, and more charms are needed to overthrow the DL.
+<LI> Smeagol now recognizes halflings with a saying.
+<LI> Dwarf magic resistance slightly increased.
+<LI> Fixed another display bug with the experimento revival code.
+<LI> Gandalf now gives all three scroll spells at once and heals when encountered.
+<LI> Experimento starting range moved back to 2000.
+<LI> Steward transports are now blocked by charms and curses by blessings.
+<LI> Gold amounts slightly reduced to reduce an honest player's chance of being called a thief (which is now extremely deadly).
+<LI> Gwaihir now Treasure Type 7, Treebeard Treasure Type 6.  
+<LI> Teleport cost reduced by one-third.
+<LI> Fewer charms are now needed to block a special attack.
+<LI> Gandalf now drops a pick scroll in addition to the buff-up scrolls.
+<LI> Vortex now drains more mana.
+<LI> Morgoth weakened again.
+<LI> Blessings automatically give first strike if the player has completely without sin, or if the player has a speed of exactly zero.
+<LI> Smurfs can no longer be successfully thrown at a cloaked player.
+<LI> Transforming a monster no longer tells the player the new monster before
+the fight starts.
+<LI> Kobolds no longer attempt to steal gold if a player has no gold.
+</UL>
+
+</HTML>
